@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Simple Notes</string>
+    <string name="input_placeholder">Type something</string>
+    <string name="title_placeholder">Title</string>
+    <string name="replace">Replace</string>
+    <string name="add_note">Add Note</string>
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_button">+</string>
+    <string name="remove_button">X</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

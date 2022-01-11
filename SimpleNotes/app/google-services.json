@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "615886003045",
+    "project_id": "grocery-list-cloud-storage",
+    "storage_bucket": "grocery-list-cloud-storage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615886003045:android:070568cf6dbacbb6cc9f8c",
+        "android_client_info": {
+          "package_name": "com.example.grocerylist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615886003045-m05nkpetbebso5f5g149e5ajs8715atv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY0Y1h3OZIqv0qJC4HgrSju9Axc7y2lNk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615886003045-m05nkpetbebso5f5g149e5ajs8715atv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
