@@ -2,6 +2,9 @@ package com.example.grocerylist
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
@@ -20,7 +23,6 @@ class NoteEditor : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,18 +55,14 @@ class NoteEditor : Fragment() {
         cancelButton.setOnClickListener {
             goToNotes()
         }
-        return view;
-    }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater){
-        inflater.inflate(R.menu.note_editor,menu)
-        return super.onCreateOptionsMenu(menu,inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId==R.id.bullet){
-            Log.d(TAG,"ajde implementiraj vise")
+        val mode=context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+        when(mode){
+            Configuration.UI_MODE_NIGHT_YES->{cancelButton.setBackgroundColor(0xFFB37700.toInt())
+                doneButton.setBackgroundColor(0xFFB37700.toInt())}
+            Configuration.UI_MODE_NIGHT_NO->{cancelButton.setBackgroundColor(0xFFF6CA9F.toInt())
+                doneButton.setBackgroundColor(0xFFF6CA9F.toInt())}
         }
-        return super.onOptionsItemSelected(item)
+        return view;
     }
     private fun goToNotes(){
         activity?.supportFragmentManager?.popBackStackImmediate()

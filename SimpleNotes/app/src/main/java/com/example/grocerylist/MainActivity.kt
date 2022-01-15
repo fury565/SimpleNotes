@@ -3,6 +3,9 @@ package com.example.grocerylist
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -28,7 +31,14 @@ class MainActivity : AppCompatActivity() {
             with(sharedPref.edit()){
                 putString("ID",UUID.randomUUID().toString())
             }.apply()
+
         sharedPref.getString("ID","nema")?.let { Log.d(TAG, it) }
+
+        val mode=applicationContext.resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)
+        when(mode){
+            Configuration.UI_MODE_NIGHT_YES->{supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#b37700")))}
+            Configuration.UI_MODE_NIGHT_NO->{supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F6CA9F")))}
+        }
     }
 
     override fun onBackPressed() {

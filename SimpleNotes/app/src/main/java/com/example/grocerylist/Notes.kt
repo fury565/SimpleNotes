@@ -33,7 +33,7 @@ class Notes : Fragment() {
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val db = Firebase.firestore
         sharedPref?.getString("ID","null")?.let {
-            db.collection("User").document(it).collection("Note")
+            db.collection("User").document(it).collection("Note").orderBy("Title")
                 .addSnapshotListener { value, error ->
                     if(error == null) {
                         val values: MutableList<Note> =

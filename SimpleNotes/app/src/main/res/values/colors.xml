@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="red">#FFFF0000</color>
+    <color name="skin">#FFF6CA9F</color>
+    <color name="darkskin">#FFb37700</color>
+
 </resources>
