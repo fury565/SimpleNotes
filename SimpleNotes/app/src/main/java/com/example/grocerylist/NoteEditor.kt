@@ -3,27 +3,18 @@ package com.example.grocerylist
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.res.Configuration
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
 import android.text.SpannableStringBuilder
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.EditText
-import androidx.fragment.app.FragmentTransaction
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class NoteEditor : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,7 +53,7 @@ class NoteEditor : Fragment() {
             Configuration.UI_MODE_NIGHT_NO->{cancelButton.setBackgroundColor(0xFFF6CA9F.toInt())
                 doneButton.setBackgroundColor(0xFFF6CA9F.toInt())}
         }
-        return view;
+        return view
     }
     private fun goToNotes(){
         activity?.supportFragmentManager?.popBackStackImmediate()
@@ -88,7 +79,7 @@ class NoteEditor : Fragment() {
     private fun editNoteInDb(title:String?,oldTitle:String?,content:String?,oldContent:String?){
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val db=Firebase.firestore
-        var noteQuery = sharedPref?.getString("ID","null")
+        val noteQuery = sharedPref?.getString("ID","null")
             ?.let { db.collection("User").document(it).collection("Note").whereEqualTo("Title",oldTitle).whereEqualTo("Content",oldContent) }
         noteQuery?.get()?.addOnCompleteListener {
             it.result?.documents?.forEach {

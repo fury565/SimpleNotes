@@ -5,16 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.note_holder.view.*
 
 class NoteAdapter(private val items: MutableList<Note>,private val context: Context):
@@ -44,7 +40,7 @@ class NoteAdapter(private val items: MutableList<Note>,private val context: Cont
     private fun deleteFromDb(pos:Int){
         val sharedPref = (context as FragmentActivity).getPreferences(Context.MODE_PRIVATE)
         val db=Firebase.firestore
-        var noteQuery = sharedPref.getString("ID","null")?.let {
+        val noteQuery = sharedPref.getString("ID","null")?.let {
             db.collection("User").document(it).collection("Note").whereEqualTo("Title",items[pos].Title).whereEqualTo("Content",items[pos].Content) }
         noteQuery?.get()?.addOnCompleteListener {
             it.result?.documents?.forEach {
@@ -77,17 +73,17 @@ class NoteAdapter(private val items: MutableList<Note>,private val context: Cont
                 goToEditor(notes)
             }
         }
-        fun goToEditor(notes:Note){
+        private fun goToEditor(notes:Note){
             val nextFragment = NoteEditor()
             val bundle = Bundle()
             bundle.putBoolean("New",false)
             bundle.putString("Title",notes.Title)
             bundle.putString("Content",notes.Content)
             nextFragment.arguments = bundle
-            val fragmentTransaction: FragmentTransaction? =
-                activity.supportFragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragContainer, nextFragment)
-            fragmentTransaction?.addToBackStack(null)?.commit()
+            val fragmentTransaction: FragmentTransaction =
+                activity.supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragContainer, nextFragment)
+            fragmentTransaction.addToBackStack(null).commit()
         }
     }
 }

@@ -1,24 +1,11 @@
 package com.example.grocerylist
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import android.view.View
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.widget.Toolbar
 import java.util.*
 
 
@@ -31,8 +18,6 @@ class MainActivity : AppCompatActivity() {
             with(sharedPref.edit()){
                 putString("ID",UUID.randomUUID().toString())
             }.apply()
-
-        sharedPref.getString("ID","nema")?.let { Log.d(TAG, it) }
 
         val mode=applicationContext.resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)
         when(mode){
