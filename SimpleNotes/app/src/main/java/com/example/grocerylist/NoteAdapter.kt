@@ -1,7 +1,10 @@
 package com.example.grocerylist
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +44,7 @@ class NoteAdapter(private val items: MutableList<Note>,private val context: Cont
         val sharedPref = (context as FragmentActivity).getPreferences(Context.MODE_PRIVATE)
         val db=Firebase.firestore
         val noteQuery = sharedPref.getString("ID","null")?.let {
-            db.collection("User").document(it).collection("Note").whereEqualTo("Title",items[pos].Title).whereEqualTo("Content",items[pos].Content) }
+            db.collection("User").document(it).collection("Note").whereEqualTo("Title",items[pos].Title).whereEqualTo("Content",items[pos].Content).whereEqualTo("Category",items[pos].Category) }
         noteQuery?.get()?.addOnCompleteListener {
             it.result?.documents?.forEach {
                 it.reference.delete()
@@ -62,10 +65,16 @@ class NoteAdapter(private val items: MutableList<Note>,private val context: Cont
             itemView.findViewById(R.id.tvNoteTitle)
         private val content: TextView=
             itemView.findViewById(R.id.tvNoteContent)
+        private val category: TextView=
+            itemView.findViewById(R.id.tvNoteCategory)
+        private val date: TextView=
+            itemView.findViewById(R.id.tvNoteDate)
         private val activity:FragmentActivity= context as FragmentActivity
         fun bind(notes: Note) {
             title.text=notes.Title
             content.text=notes.Content
+            category.text=notes.Category
+            date.text=notes.LastModified
             title.setOnClickListener {
                 goToEditor(notes)
             }
@@ -79,11 +88,25 @@ class NoteAdapter(private val items: MutableList<Note>,private val context: Cont
             bundle.putBoolean("New",false)
             bundle.putString("Title",notes.Title)
             bundle.putString("Content",notes.Content)
+            val categoryID=findItemPos(notes.Category)
+            bundle.putInt("Category",categoryID)
+            bundle.putString("LastModified",notes.LastModified)
             nextFragment.arguments = bundle
             val fragmentTransaction: FragmentTransaction =
                 activity.supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.fragContainer, nextFragment)
             fragmentTransaction.addToBackStack(null).commit()
+        }
+        private fun findItemPos(value:String?):Int{
+            val noteCategories=activity?.getPreferences(Context.MODE_PRIVATE)?.getStringSet("CategoryList", setOf())?.toMutableList()!!
+            noteCategories.remove("All")
+            var counter=0
+            noteCategories.forEach {
+                if(it==value)
+                    return counter
+                counter++
+            }
+            return 0
         }
     }
 }

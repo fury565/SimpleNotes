@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:background="@drawable/layout_rounded"
-    android:backgroundTint="#FAF3B8">
+    android:backgroundTint="#FAF3B8"
+    android:paddingBottom="5dp">
 
     <View
         android:id="@+id/view"
@@ -25,12 +26,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Naslov"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/RemoveButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,9 +46,9 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         android:ellipsize="end"
-        android:maxLines="3"
+        android:maxLines="6"
         android:text="Sadrzaj"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,5 +66,27 @@
         android:textColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNoteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        android:text="malo veci tekst"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoteContent" />
+
+    <TextView
+        android:id="@+id/tvNoteCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoteContent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,17 @@ class MainActivity : AppCompatActivity() {
             with(sharedPref.edit()){
                 putString("ID",UUID.randomUUID().toString())
             }.apply()
-
+        if(sharedPref.getString("Category","null")=="null")
+            with(sharedPref.edit()){
+                putString("Category","All")
+            }.apply()
+        if(sharedPref.getStringSet("CategoryList",null)==null)
+            with(sharedPref.edit()){
+                putStringSet("CategoryList", setOf("All","Home","Work","Errand","Other"))
+            }.apply()
+        with(sharedPref.edit()){
+            putInt("Reloaded",0)
+        }.apply()
         val mode=applicationContext.resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)
         when(mode){
             Configuration.UI_MODE_NIGHT_YES->{supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#b37700")))}
@@ -36,3 +46,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+

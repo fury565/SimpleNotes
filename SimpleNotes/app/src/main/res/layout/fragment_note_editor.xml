@@ -16,12 +16,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:layout_marginEnd="130dp"
             android:hint="@string/title_placeholder"
+            android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:inputType="textPersonName"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/Done_button"
@@ -56,6 +56,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Note_Title" />
+
+        <Spinner
+            android:id="@+id/spinnerEditor"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Note_Title"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

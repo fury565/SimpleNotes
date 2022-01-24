@@ -21,7 +21,7 @@
             android:hint="(e.g) any-format-is-good"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/removeCategory" />
 
         <Button
             android:id="@+id/setId"
@@ -63,6 +63,52 @@
             android:text=""
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <Button
+            android:id="@+id/addCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:text="Add"
+            android:backgroundTint="#EC0000"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/removeCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="37dp"
+            android:text="Remove"
+            android:backgroundTint="#EC0000"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addCategory" />
+
+        <Spinner
+            android:id="@+id/spinnerSettings"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintEnd_toStartOf="@+id/removeCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/removeCategory" />
+
+        <EditText
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Name"
+            app:layout_constraintEnd_toStartOf="@+id/addCategory"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/addCategory" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
