@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
@@ -30,7 +29,7 @@
         android:layout_marginEnd="10dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Naslov"
+        android:text="@string/title"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/RemoveButton"
@@ -47,7 +46,7 @@
         android:layout_marginBottom="20dp"
         android:ellipsize="end"
         android:maxLines="6"
-        android:text="Sadrzaj"
+        android:text="@string/content"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
-        android:text="malo veci tekst"
+        android:text="@string/sample"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteContent" />
@@ -84,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
-        android:text="TextView"
+        android:text="@string/sample"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNoteContent" />

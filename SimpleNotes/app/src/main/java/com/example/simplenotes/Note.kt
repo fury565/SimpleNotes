@@ -1,6 +1,4 @@
-package com.example.grocerylist
-
-import java.util.*
+package com.example.simplenotes
 
 data class Note(
     var Title: String? =null,

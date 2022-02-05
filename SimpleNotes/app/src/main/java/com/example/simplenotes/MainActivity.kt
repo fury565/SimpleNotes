@@ -1,4 +1,4 @@
-package com.example.grocerylist
+package com.example.simplenotes
 
 import android.content.Context
 import android.content.res.Configuration
@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity() {
         }.apply()
         val mode=applicationContext.resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)
         when(mode){
-            Configuration.UI_MODE_NIGHT_YES->{supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#b37700")))}
-            Configuration.UI_MODE_NIGHT_NO->{supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.parseColor("#F6CA9F")))}
+            Configuration.UI_MODE_NIGHT_YES->{supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.darkerTheme)))}
+            Configuration.UI_MODE_NIGHT_NO->{supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.theme)))}
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.grocerylist
+package com.example.simplenotes
 
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -34,7 +34,7 @@ class NoteEditor : Fragment(),AdapterView.OnItemSelectedListener {
         val oldCategoryID=arguments?.getInt("Category")
         val now=getCurrentDate()
         val noteCategories=sharedPref?.getStringSet("CategoryList", setOf())?.toMutableList()!!
-        noteCategories?.remove("All")
+        noteCategories.remove("All")
         val options=view.findViewById<Spinner>(R.id.spinnerEditor)
         options.adapter= context?.let { ArrayAdapter<String>(it,android.R.layout.simple_spinner_dropdown_item,noteCategories) }
         options.onItemSelectedListener=this
@@ -48,12 +48,10 @@ class NoteEditor : Fragment(),AdapterView.OnItemSelectedListener {
         doneButton.setOnClickListener {
             if(isNew == true){
                 addNoteToDb(title.text.toString() ,content.text.toString(),options.selectedItem.toString(), now)
-                Log.d(TAG,"Added note")
             }
             else if (isNew==false){
                 val newCategory=options.selectedItem
                 editNoteInDb(title.text.toString(),oldTitleText,content.text.toString(),oldContentText,newCategory.toString(), now)
-                Log.d(TAG,"Edited note")
             }
             goToNotes()
         }
@@ -62,16 +60,15 @@ class NoteEditor : Fragment(),AdapterView.OnItemSelectedListener {
         }
         val mode=context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
         when(mode){
-            Configuration.UI_MODE_NIGHT_YES->{cancelButton.setBackgroundColor(0xFFB37700.toInt())
-                doneButton.setBackgroundColor(0xFFB37700.toInt())}
-            Configuration.UI_MODE_NIGHT_NO->{cancelButton.setBackgroundColor(0xFFF6CA9F.toInt())
-                doneButton.setBackgroundColor(0xFFF6CA9F.toInt())}
+            Configuration.UI_MODE_NIGHT_YES->{cancelButton.setBackgroundColor(resources.getColor(R.color.darkerTheme))
+                doneButton.setBackgroundColor(resources.getColor(R.color.darkerTheme))}
+            Configuration.UI_MODE_NIGHT_NO->{cancelButton.setBackgroundColor(resources.getColor(R.color.theme))
+                doneButton.setBackgroundColor(resources.getColor(R.color.theme))}
         }
         return view
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         parent.getItemAtPosition(pos)
-        (parent.getChildAt(0) as TextView).setTextColor(0xFFFF0000.toInt())
     }
 
     override fun onNothingSelected(parent: AdapterView<*>) {
@@ -93,7 +90,6 @@ class NoteEditor : Fragment(),AdapterView.OnItemSelectedListener {
             db.collection("User").document(it).collection("Note")
                 .add(note)
                 .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
             }
                 .addOnFailureListener { e ->
                     Log.w(TAG, "Error adding document", e)

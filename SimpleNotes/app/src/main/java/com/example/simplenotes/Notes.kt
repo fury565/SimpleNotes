@@ -1,8 +1,6 @@
-package com.example.grocerylist
+package com.example.simplenotes
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -58,7 +56,6 @@ class Notes : Fragment(),AdapterView.OnItemSelectedListener {
     }
     override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
         val selected=parent.getItemAtPosition(pos)
-        //(parent.getChildAt(0) as TextView).setTextColor(0xFFFF0000.toInt())
         val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
         val count=sharedPref?.getInt("Reloaded",-1)!!
         with(sharedPref.edit()){

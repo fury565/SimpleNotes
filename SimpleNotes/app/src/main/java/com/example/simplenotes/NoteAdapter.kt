@@ -1,10 +1,7 @@
-package com.example.grocerylist
+package com.example.simplenotes
 
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.nfc.Tag
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,7 +95,7 @@ class NoteAdapter(private val items: MutableList<Note>,private val context: Cont
             fragmentTransaction.addToBackStack(null).commit()
         }
         private fun findItemPos(value:String?):Int{
-            val noteCategories=activity?.getPreferences(Context.MODE_PRIVATE)?.getStringSet("CategoryList", setOf())?.toMutableList()!!
+            val noteCategories=activity.getPreferences(Context.MODE_PRIVATE)?.getStringSet("CategoryList", setOf())?.toMutableList()!!
             noteCategories.remove("All")
             var counter=0
             noteCategories.forEach {
