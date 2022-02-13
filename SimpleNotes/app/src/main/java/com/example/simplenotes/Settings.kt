@@ -24,13 +24,13 @@ class Settings : Fragment(),AdapterView.OnItemSelectedListener {
         val idDisplay=view.findViewById<TextView>(R.id.tvID)
         val idInput=view.findViewById<EditText>(R.id.id_input)
         val idSetter=view.findViewById<Button>(R.id.setId)
-        val options=view.findViewById<Spinner>(R.id.spinnerSettings)
+        val categoryOption=view.findViewById<Spinner>(R.id.spinnerSettings)
 
         val displayCategories=sharedPref?.getStringSet("CategoryList", setOf())?.toMutableList()!!
         displayCategories.remove("All")
         displayCategories.remove("Other")
-        options.adapter= context?.let { ArrayAdapter<String>(it,android.R.layout.simple_spinner_dropdown_item,displayCategories) }
-        options.onItemSelectedListener=this
+        categoryOption.adapter= context?.let { ArrayAdapter<String>(it,android.R.layout.simple_spinner_dropdown_item,displayCategories) }
+        categoryOption.onItemSelectedListener=this
 
         idDisplay.setText(sharedPref.getString("ID","null"))
         idSetter.setOnClickListener {
@@ -53,8 +53,8 @@ class Settings : Fragment(),AdapterView.OnItemSelectedListener {
             reloadSettings()
         }
         categoryRemover.setOnClickListener {
-            if(options.selectedItem!=null){
-                noteCategories.remove(options.selectedItem.toString())
+            if(categoryOption.selectedItem!=null){
+                noteCategories.remove(categoryOption.selectedItem.toString())
                 with(sharedPref.edit()){
                     this?.putStringSet("CategoryList", noteCategories.toMutableSet())
                 }?.apply()

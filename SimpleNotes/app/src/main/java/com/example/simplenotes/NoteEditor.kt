@@ -35,22 +35,22 @@ class NoteEditor : Fragment(),AdapterView.OnItemSelectedListener {
         val now=getCurrentDate()
         val noteCategories=sharedPref?.getStringSet("CategoryList", setOf())?.toMutableList()!!
         noteCategories.remove("All")
-        val options=view.findViewById<Spinner>(R.id.spinnerEditor)
-        options.adapter= context?.let { ArrayAdapter<String>(it,android.R.layout.simple_spinner_dropdown_item,noteCategories) }
-        options.onItemSelectedListener=this
+        val categoryOption=view.findViewById<Spinner>(R.id.spinnerEditor)
+        categoryOption.adapter= context?.let { ArrayAdapter<String>(it,android.R.layout.simple_spinner_dropdown_item,noteCategories) }
+        categoryOption.onItemSelectedListener=this
 
         if(oldTitleText!=null)
             title.text= SpannableStringBuilder(oldTitleText)
         if(oldContentText!=null)
             content.text=SpannableStringBuilder(oldContentText)
         if(oldCategoryID!=null)
-            options.setSelection(oldCategoryID)
+            categoryOption.setSelection(oldCategoryID)
         doneButton.setOnClickListener {
             if(isNew == true){
-                addNoteToDb(title.text.toString() ,content.text.toString(),options.selectedItem.toString(), now)
+                addNoteToDb(title.text.toString() ,content.text.toString(),categoryOption.selectedItem.toString(), now)
             }
             else if (isNew==false){
-                val newCategory=options.selectedItem
+                val newCategory=categoryOption.selectedItem
                 editNoteInDb(title.text.toString(),oldTitleText,content.text.toString(),oldContentText,newCategory.toString(), now)
             }
             goToNotes()
